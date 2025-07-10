@@ -7,17 +7,7 @@
 +      bgmRef.current = null;
        bgmRef.current.loop = true;
        bgmRef.current.volume = 0.3;
-     }
-
-     if (isPlaying) {
--      // Start BGM
--      bgmRef.current?.play().catch(console.warn);
-+      // 不再播放外部BGM，专注于节拍音效
        
-       const beatInterval = (60 / bpm) * 1000;
-       
-       intervalRef.current = setInterval(() => {
-         onBeat();
          playBeatSound();
        }, beatInterval);
      } else {
@@ -25,8 +15,6 @@
 -      if (bgmRef.current) {
 -        bgmRef.current.pause();
 -      }
-+      // 清理定时器
-       
        if (intervalRef.current) {
          clearInterval(intervalRef.current);
          intervalRef.current = null;
